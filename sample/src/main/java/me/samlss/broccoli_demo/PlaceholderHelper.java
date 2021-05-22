@@ -3,8 +3,10 @@ package me.samlss.broccoli_demo;
 import android.graphics.Color;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.ScaleAnimation;
 
+import me.samlss.broccoli.BroccoliGradientDrawable;
 import me.samlss.broccoli.PlaceholderParameter;
 
 /**
@@ -81,7 +83,9 @@ public class PlaceholderHelper {
                 return new PlaceholderParameter.Builder()
                         .setView(view)
                         .setAnimation(locationAnimation)
-                        .setDrawable(DrawableUtils.createRectangleDrawable(placeHolderColor, 5))
+//                        .setDrawable(DrawableUtils.createRectangleDrawable(placeHolderColor, 5))
+                        .setDrawable(new BroccoliGradientDrawable(Color.parseColor("#DDDDDD"),
+                                Color.parseColor("#EECCCC"), 0, 1000, new LinearInterpolator()))
                         .build();
 
             case R.id.iv_arrow_right:

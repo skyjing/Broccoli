@@ -52,7 +52,7 @@ public class LayoutAdvancedSampleActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.parseColor("#847465"));
         }
         setContentView(R.layout.activity_layout_sample);
-
+        mBroccoli = new Broccoli();
         initViews();
         initPlaceholders();
     }
@@ -106,35 +106,37 @@ public class LayoutAdvancedSampleActivity extends AppCompatActivity {
     }
 
     private void initPlaceholders(){
-        mBroccoli = new Broccoli();
-        mBroccoli.addPlaceholders(PlaceholderHelper.getParameter(tvViewTimes),
-                    PlaceholderHelper.getParameter(tvCollectTimes),
-                    PlaceholderHelper.getParameter(tvPrice),
-                    PlaceholderHelper.getParameter(ivClock),
-                    PlaceholderHelper.getParameter(tvTime),
-                    PlaceholderHelper.getParameter(ivCalendar),
-                    PlaceholderHelper.getParameter(ivLocation),
-                    PlaceholderHelper.getParameter(tvLocation),
-                    PlaceholderHelper.getParameter(ivRightArrow),
-                    PlaceholderHelper.getParameter(ivLogo),
-                    PlaceholderHelper.getParameter(tvOrganizer),
-                    PlaceholderHelper.getParameter(tvOrganizerDescription),
-                    PlaceholderHelper.getParameter(tvFans),
-                    PlaceholderHelper.getParameter(tvFansNumber),
-                    PlaceholderHelper.getParameter(tvEvents),
-                    PlaceholderHelper.getParameter(tvEventsNumber),
-                    PlaceholderHelper.getParameter(tvFollow),
-                    PlaceholderHelper.getParameter(tvStation)
-                );
-
+        initAdapter();
         showPlaceholders();
+    }
+
+    private void initAdapter(){
+        mBroccoli.addPlaceholders(PlaceholderHelper.getParameter(tvViewTimes),
+                PlaceholderHelper.getParameter(tvCollectTimes),
+                PlaceholderHelper.getParameter(tvPrice),
+                PlaceholderHelper.getParameter(ivClock),
+                PlaceholderHelper.getParameter(tvTime),
+                PlaceholderHelper.getParameter(ivCalendar),
+                PlaceholderHelper.getParameter(ivLocation),
+                PlaceholderHelper.getParameter(tvLocation),
+                PlaceholderHelper.getParameter(ivRightArrow),
+                PlaceholderHelper.getParameter(ivLogo),
+                PlaceholderHelper.getParameter(tvOrganizer),
+                PlaceholderHelper.getParameter(tvOrganizerDescription),
+                PlaceholderHelper.getParameter(tvFans),
+                PlaceholderHelper.getParameter(tvFansNumber),
+                PlaceholderHelper.getParameter(tvEvents),
+                PlaceholderHelper.getParameter(tvEventsNumber),
+                PlaceholderHelper.getParameter(tvFollow),
+                PlaceholderHelper.getParameter(tvStation)
+        );
     }
 
     private void showPlaceholders(){
         mBroccoli.show();
 
         mHandler.removeCallbacks(task);
-        mHandler.postDelayed(task,3000);
+        mHandler.postDelayed(task,6000);
     }
 
     private Runnable task = new Runnable() {
@@ -149,6 +151,9 @@ public class LayoutAdvancedSampleActivity extends AppCompatActivity {
     }
 
     public void onRetry(View view) {
+        mBroccoli.clearAllPlaceholders();
+        mBroccoli.removeAllPlaceholders();
+        initAdapter();
         showPlaceholders();
     }
 }
